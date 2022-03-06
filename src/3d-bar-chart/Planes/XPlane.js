@@ -34,7 +34,7 @@ export const XPlane = ({ offset = 0, children }) => {
     width,
     horizontal
   )
-
+  console.log("XP TRANSLATE : ", `translate(0,${chartHeight / 2 - height})`)
   return (
     <Plane
       transform={`

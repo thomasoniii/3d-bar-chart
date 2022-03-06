@@ -6,13 +6,13 @@ import { usePlaneDataContext } from "./PlaneDataProvider/PlaneDataContext"
 import { h, t } from "../utils/trig"
 
 const Box = ({ x = 0, y = 0, fill = "red", flipVertical = false, measure }) => {
-  const { width, height, rows, cols, angle } = usePlaneDataContext()
+  const { width, height, rows, cols, angle, transform } = usePlaneDataContext()
 
   const horizontal = h(width, angle)
 
   const boxWidth = horizontal / cols
   const boxHeight = height / rows
-  console.log("BW : ", width, height, boxWidth, boxHeight)
+  console.log("BW : ", width, height, boxWidth, boxHeight, fill)
   const barHeight = measure ? height * measure : boxHeight
 
   const xCoord = x * boxWidth
@@ -27,7 +27,14 @@ const Box = ({ x = 0, y = 0, fill = "red", flipVertical = false, measure }) => {
     L${xCoord}, ${yCoord + barHeight + lvOffset}
     Z`
 
-  return <path d={box} style={{ fill, stroke: "cyan" }} className="box" />
+  return (
+    <path
+      d={box}
+      style={{ fill, stroke: "cyan" }}
+      className="box"
+      transform={transform}
+    />
+  )
 }
 
 export default Box

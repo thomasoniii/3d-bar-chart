@@ -30,12 +30,20 @@ const ThreeDBarChart = ({
   const yOffset = 0
   const zOffset = 0
 
-  const box = { x: 0, z: 0, height: 0.55 }
+  const box = {
+    x: 0,
+    z: 0,
+    height: 0.5,
+    fillX: "red",
+    fillY: "green",
+    fillZ: "blue"
+  }
   const box2 = { x: 1, z: 2, height: 0.55 }
   const box3 = { x: 2, z: 0, height: 0.55 }
 
   const boxes = [box]
-  if (false) {
+  //const boxes = []
+  if (!boxes.length) {
     for (let xi = 0; xi < xBoxes; xi++) {
       const fill = `#${Math.floor(Math.random() * 16777215).toString(16)}`
       for (let zi = 0; zi < zBoxes; zi++) {

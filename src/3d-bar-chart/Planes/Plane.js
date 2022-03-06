@@ -4,7 +4,7 @@ import React from "react"
 export const Plane = ({ transform, children }) => {
   // const [data, setData] = useState({})
   return (
-    <g transform-origin="center" transform={transform}>
+    <g transform-origin="center" transform={transform} className="plane">
       {children}
     </g>
   )

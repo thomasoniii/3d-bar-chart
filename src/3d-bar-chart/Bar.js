@@ -7,7 +7,8 @@ import { useChartDataContext } from "./ChartDataProvider"
 import Box from "./Box"
 
 const Bar = ({ box }) => {
-  const { zBoxes } = useChartDataContext()
+  const { yBoxes } = useChartDataContext()
+  console.log("BAR HEIGHT : ", yBoxes, box.height)
   return (
     <>
       <XPlane offset={box.z + 1}>
@@ -28,7 +29,7 @@ const Bar = ({ box }) => {
           flipVertical
         />
       </YPlane>
-      <ZPlane offset={box.height * zBoxes}>
+      <ZPlane offset={box.height * yBoxes}>
         <Box x={box.x} y={box.z} fill={box.fillZ || box.fill} />
       </ZPlane>
     </>
