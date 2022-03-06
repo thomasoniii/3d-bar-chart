@@ -8,14 +8,7 @@ import { usePlaneDataContext } from "./PlaneDataProvider/PlaneDataContext"
 import "./grid.css"
 
 const Grid = () => {
-  const {
-    rows = 10,
-    cols = 10,
-    width = 125,
-    height = 125,
-    angle = 0,
-    transform
-  } = usePlaneDataContext()
+  const { rows, cols, width, height, angle, transform } = usePlaneDataContext()
   const horizontalLines = []
   console.log("GW:: ", width, height)
   const horizontal = h(width, angle)

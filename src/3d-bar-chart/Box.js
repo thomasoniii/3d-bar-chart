@@ -5,17 +5,8 @@ import { usePlaneDataContext } from "./PlaneDataProvider/PlaneDataContext"
 
 import { h, t } from "../utils/trig"
 
-const Box = ({
-  width,
-  height,
-  angle = 0,
-  x,
-  y,
-  fill = "red",
-  flipVertical = false,
-  measure
-}) => {
-  const { rows, cols } = usePlaneDataContext()
+const Box = ({ x = 0, y = 0, fill = "red", flipVertical = false, measure }) => {
+  const { width, height, rows, cols, angle } = usePlaneDataContext()
 
   const horizontal = h(width, angle)
 

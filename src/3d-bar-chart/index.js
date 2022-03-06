@@ -4,7 +4,8 @@ import React from "react"
 
 import Grid from "./Grid"
 import { h, v, t } from "../utils/trig"
-import Box from "./Box"
+
+import Bar from "./Bar"
 import { ChartDataProvider } from "./ChartDataProvider"
 import { XPlane, YPlane, ZPlane, Plane } from "./Planes"
 
@@ -29,7 +30,21 @@ const ThreeDBarChart = ({
   const yOffset = 0
   const zOffset = 0
 
-  const box = { x: 0, y: 0, z: 0, height: 0.55 }
+  const box = { x: 0, z: 0, height: 0.55 }
+  const box2 = { x: 1, z: 2, height: 0.55 }
+  const box3 = { x: 2, z: 0, height: 0.55 }
+
+  const boxes = []
+  for (let xi = 0; xi < xBoxes; xi++) {
+    for (let zi = 0; zi < zBoxes; zi++) {
+      boxes.push({
+        x: xi,
+        z: zi,
+        height: Math.random(),
+        fill: `#${Math.floor(Math.random() * 16777215).toString(16)}`
+      })
+    }
+  }
 
   return (
     <svg
@@ -74,59 +89,28 @@ const ThreeDBarChart = ({
         <ZPlane>
           <Grid />
         </ZPlane>
-        <XPlane offset={xOffset}>
-          <Box
-            width={CHART_WIDTH / 2}
-            height={CHART_HEIGHT / 2}
-            angle={angle}
-            x={box.x}
-            y={box.y}
-            measure={box.height}
-            fill={"red"}
-            flipVertical={true}
-          />
-        </XPlane>
-        <YPlane offset={yOffset}>
-          <Box
-            width={CHART_WIDTH / 2}
-            height={CHART_HEIGHT / 2}
-            angle={angle}
-            x={box.z}
-            y={box.y}
-            measure={box.height}
-            fill={"green"}
-            flipVertical={true}
-          />
-        </YPlane>
-        <ZPlane offset={zOffset}>
-          <Box
-            width={CHART_WIDTH / 2}
-            height={CHART_HEIGHT / 2}
-            angle={`-${angle}`}
-            x={box.x}
-            y={box.z}
-            fill={"blue"}
-          />
-        </ZPlane>
-        {/*
-        <Plane>
-          <Grid
-            width={CHART_WIDTH / 2}
-            height={CHART_HEIGHT / 2}
-            Xtransform-origin={"center"}
-            Xtransform={`translate(${CHART_WIDTH / 2},0)`}
-            angle={0}
-          />
-          <Box
-            width={CHART_WIDTH / 2}
-            height={CHART_HEIGHT / 2}
-            angle={0}
-            x={0}
-            y={0}
-            fill={"purple"}
-          />
-        </Plane>{" "}
-        */}
+        {/*<Bar box={box} />
+        <Bar box={box2} />
+        <Bar box={box3} /> */}
+        {boxes.map((b, i) => (
+          <Bar key={i} box={b} />
+        ))}
+
+        {/* <Grid
+          width={CHART_WIDTH / 2}
+          height={CHART_HEIGHT / 2}
+          Xtransform-origin={"center"}
+          Xtransform={`translate(${CHART_WIDTH / 2},0)`}
+          angle={0}
+        />
+        <Box
+          width={CHART_WIDTH / 2}
+          height={CHART_HEIGHT / 2}
+          angle={0}
+          x={0}
+          y={0}
+          fill={"purple"}
+        /> */}
       </ChartDataProvider>
     </svg>
   )
