@@ -1,16 +1,25 @@
+/* eslint-disable */
+
 import React from "react"
 
-import { h, v, t } from "../utils/trig"
-
-/* eslint-disable */
+import { h, t } from "../utils/trig"
+import { usePlaneDataContext } from "./PlaneDataProvider/PlaneDataContext"
 
 import "./grid.css"
 
-const Grid = ({ width, height, rows, cols, transform, angle = 0 }) => {
+const Grid = () => {
+  const {
+    rows = 10,
+    cols = 10,
+    width = 125,
+    height = 125,
+    angle = 0,
+    transform
+  } = usePlaneDataContext()
   const horizontalLines = []
-
+  console.log("GW:: ", width, height)
   const horizontal = h(width, angle)
-  const vertical = v(height, angle)
+  const vertical = t(horizontal, angle)
 
   for (let y = 1; y < rows; y++) {
     horizontalLines.push(
@@ -51,9 +60,9 @@ const Grid = ({ width, height, rows, cols, transform, angle = 0 }) => {
 
   return (
     <g className="grid-box-group" transform={transform}>
+      <path d={box} className="grid-box" />
       {horizontalLines}
       {verticalLines}
-      <path d={box} className="grid-box" />
     </g>
   )
 }

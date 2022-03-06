@@ -1,14 +1,13 @@
-import React from "react"
-
 /* eslint-disable */
+import React from "react"
+import { useChartDataContext } from "./ChartDataProvider"
+import { usePlaneDataContext } from "./PlaneDataProvider/PlaneDataContext"
 
 import { h, t } from "../utils/trig"
 
 const Box = ({
   width,
   height,
-  rows,
-  cols,
   angle = 0,
   x,
   y,
@@ -16,11 +15,13 @@ const Box = ({
   flipVertical = false,
   measure
 }) => {
+  const { rows, cols } = usePlaneDataContext()
+
   const horizontal = h(width, angle)
 
   const boxWidth = horizontal / cols
   const boxHeight = height / rows
-
+  console.log("BW : ", width, height, boxWidth, boxHeight)
   const barHeight = measure ? height * measure : boxHeight
 
   const xCoord = x * boxWidth
