@@ -27,7 +27,7 @@ const Box = ({ x = 0, y = 0, fill = "red", flipVertical = false, measure }) => {
     L${xCoord}, ${yCoord + barHeight + lvOffset}
     Z`
 
-  return <path d={box} style={{ fill }} className="box" />
+  return <path d={box} style={{ fill, stroke: fill }} className="box" />
 }
 
 export default Box
