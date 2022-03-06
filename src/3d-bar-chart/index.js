@@ -34,15 +34,18 @@ const ThreeDBarChart = ({
   const box2 = { x: 1, z: 2, height: 0.55 }
   const box3 = { x: 2, z: 0, height: 0.55 }
 
-  const boxes = []
-  for (let xi = 0; xi < xBoxes; xi++) {
-    for (let zi = 0; zi < zBoxes; zi++) {
-      boxes.push({
-        x: xi,
-        z: zi,
-        height: Math.random(),
-        fill: `#${Math.floor(Math.random() * 16777215).toString(16)}`
-      })
+  const boxes = [box]
+  if (false) {
+    for (let xi = 0; xi < xBoxes; xi++) {
+      const fill = `#${Math.floor(Math.random() * 16777215).toString(16)}`
+      for (let zi = 0; zi < zBoxes; zi++) {
+        boxes.push({
+          x: xi,
+          z: zi,
+          height: Math.random(),
+          fill
+        })
+      }
     }
   }
 
@@ -60,7 +63,7 @@ const ThreeDBarChart = ({
           xBoxes,
           yBoxes,
           zBoxes,
-          boxSize: { ...boxSize, xzw: 12.5 },
+          boxSize: { ...boxSize, yzw: 12.5 },
           angle
         }}
       >

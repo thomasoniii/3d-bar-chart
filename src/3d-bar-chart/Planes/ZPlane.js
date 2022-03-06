@@ -35,8 +35,8 @@ export const ZPlane = ({ offset = 0, children }) => {
     >
       <PlaneDataProvider
         value={{
-          rows: xBoxes,
-          cols: zBoxes,
+          rows: zBoxes,
+          cols: xBoxes,
           width,
           height,
           angle: -angle
