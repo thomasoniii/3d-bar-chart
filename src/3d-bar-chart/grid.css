@@ -1,0 +1,10 @@
+.grid-box-group {
+}
+.grid-box {
+  stroke: black;
+  fill: none;
+}
+
+.grid-line {
+  stroke: gray;
+}
