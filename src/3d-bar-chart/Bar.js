@@ -8,7 +8,7 @@ import Box from "./Box"
 
 const Bar = ({ box }) => {
   const { yBoxes } = useChartDataContext()
-  console.log("BAR HEIGHT : ", yBoxes, box.height)
+  console.log("ZWH BAR HEIGHT : ", yBoxes, box.height)
   return (
     <>
       <XPlane offset={box.z + 1}>

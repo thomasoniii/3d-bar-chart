@@ -41,8 +41,8 @@ const ThreeDBarChart = ({
   const box2 = { x: 1, z: 2, height: 0.55 }
   const box3 = { x: 2, z: 0, height: 0.55 }
 
-  const boxes = [box]
-  //const boxes = []
+  // const boxes = [box]
+  const boxes = []
   if (!boxes.length) {
     for (let xi = 0; xi < xBoxes; xi++) {
       const fill = `#${Math.floor(Math.random() * 16777215).toString(16)}`
@@ -94,7 +94,7 @@ const ThreeDBarChart = ({
         <XPlane>
           <Grid />
         </XPlane>
-        <YPlane>
+        <YPlane offset={0.0}>
           <Grid />
         </YPlane>
         <ZPlane>

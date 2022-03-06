@@ -35,10 +35,18 @@ export const XPlane = ({ offset = 0, children }) => {
     horizontal
   )
   console.log("XP TRANSLATE : ", `translate(0,${chartHeight / 2 - height})`)
+
+  //const calculatedHeightOffset = (boxSize.ywzh * offset) / 2
+
+  const calculatedHeightOffset = (boxSize.ywzh * offset) / 2
+  const calculatedWidthOffset =
+    (h(yBoxes * boxSize.ywzh, angle) / yBoxes) * offset
+
+  console.log("XP CALC : ", boxSize, calculatedHeightOffset)
   return (
     <Plane
       transform={`
-        translate(-${boxWidth * offset * 2},${(boxHeight * offset * 2) / 2})
+        translate(-${calculatedWidthOffset},${calculatedHeightOffset})
         translate(${chartWidth / 2},0)
 
       `}
