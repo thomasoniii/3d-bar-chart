@@ -17,7 +17,7 @@ export const YPlane = ({ offset = 0, children }) => {
     angle
   } = useChartDataContext()
 
-  const width = zBoxes * boxSize.xzw
+  const width = zBoxes * boxSize.ywzh
   const height = yBoxes * boxSize.xyh
 
   const horizontal = h(width / 2, angle)
