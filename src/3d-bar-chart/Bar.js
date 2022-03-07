@@ -12,31 +12,35 @@ const Bar = ({ box }) => {
   const d = 200
 
   return (
-    <Animator values={["measure"]} duration={d}>
+    <Animator values={["measure"]} initial={{ measure: 0 }} duration={d}>
       <AnimationConsumer
         measure={box.height}
         render={({ measure: m }) => {
           return (
             <>
-              <XPlane offset={box.z + 1}>
-                <Box
-                  x={box.x}
-                  y={box.y}
-                  measure={m}
-                  fill={box.fillX || box.fill}
-                  flipVertical
-                />
-              </XPlane>
+              {m && (
+                <XPlane offset={box.z + 1}>
+                  <Box
+                    x={box.x}
+                    y={box.y}
+                    measure={m}
+                    fill={box.fillX || box.fill}
+                    flipVertical
+                  />
+                </XPlane>
+              )}
 
-              <YPlane offset={box.x + 1}>
-                <Box
-                  x={box.z}
-                  y={box.y}
-                  measure={m}
-                  fill={box.fill || box.fillY}
-                  flipVertical
-                />
-              </YPlane>
+              {m && (
+                <YPlane offset={box.x + 1}>
+                  <Box
+                    x={box.z}
+                    y={box.y}
+                    measure={m}
+                    fill={box.fill || box.fillY}
+                    flipVertical
+                  />
+                </YPlane>
+              )}
 
               <ZPlane offset={m * yBoxes}>
                 <Box x={box.x} y={box.z} fill={box.fillZ || box.fill} />
