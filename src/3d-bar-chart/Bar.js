@@ -9,41 +9,43 @@ import Box from "./Box"
 
 const Bar = ({ box }) => {
   const { yBoxes } = useChartDataContext()
-  const d = 1000
-  const measure = box.height
-  const zOffset = box.height * yBoxes
+  const d = 200
+
   return (
-    <>
-      <XPlane offset={box.z + 1}>
-        <Animator values={["measure"]} duration={d}>
-          <Box
-            x={box.x}
-            y={box.y}
-            measure={box.height}
-            fill={box.fillX || box.fill}
-            flipVertical
-          />
-        </Animator>
-      </XPlane>
-      <YPlane offset={box.x + 1}>
-        <Animator values={["measure"]} duration={d}>
-          <Box
-            x={box.z}
-            y={box.y}
-            measure={box.height}
-            fill={box.fill || box.fillY}
-            flipVertical
-          />
-        </Animator>
-      </YPlane>
-      <Animator values={["offset"]} duration={d}>
-        <ZPlane offset={zOffset}>
-          <Animator values={["measure"]} duration={d}>
-            <Box x={box.x} y={box.z} fill={box.fillZ || box.fill} />
-          </Animator>
-        </ZPlane>
-      </Animator>
-    </>
+    <Animator values={["measure"]} duration={d}>
+      <AnimationConsumer
+        measure={box.height}
+        render={({ measure: m }) => {
+          return (
+            <>
+              <XPlane offset={box.z + 1}>
+                <Box
+                  x={box.x}
+                  y={box.y}
+                  measure={m}
+                  fill={box.fillX || box.fill}
+                  flipVertical
+                />
+              </XPlane>
+
+              <YPlane offset={box.x + 1}>
+                <Box
+                  x={box.z}
+                  y={box.y}
+                  measure={m}
+                  fill={box.fill || box.fillY}
+                  flipVertical
+                />
+              </YPlane>
+
+              <ZPlane offset={m * yBoxes}>
+                <Box x={box.x} y={box.z} fill={box.fillZ || box.fill} />
+              </ZPlane>
+            </>
+          )
+        }}
+      />
+    </Animator>
   )
 }
 
