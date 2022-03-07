@@ -5,7 +5,14 @@ import { usePlaneDataContext } from "./PlaneDataProvider/PlaneDataContext"
 
 import { h, t } from "../utils/trig"
 
-const Box = ({ x = 0, y = 0, fill = "red", flipVertical = false, measure }) => {
+const Box = ({
+  x = 0,
+  y = 0,
+  fill = "red",
+  stroke = "cyan",
+  flipVertical = false,
+  measure
+}) => {
   const { width, height, rows, cols, angle, transform } = usePlaneDataContext()
 
   const horizontal = h(width, angle)
@@ -30,7 +37,7 @@ const Box = ({ x = 0, y = 0, fill = "red", flipVertical = false, measure }) => {
   return (
     <path
       d={box}
-      style={{ fill, stroke: "cyan" }}
+      style={{ fill, stroke }}
       className="box"
       transform={transform}
     />

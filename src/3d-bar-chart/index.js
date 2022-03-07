@@ -14,9 +14,14 @@ const CHART_HEIGHT = 250
 
 const getColor = (boxes, i) => {
   if (i < boxes.length) {
-    return boxes[i].fill
+    return boxes[i]
   } else {
-    return `#${Math.floor(Math.random() * 16777215).toString(16)}`
+    const fill = Math.floor(Math.random() * 16777215)
+    const stroke = 16777215 - fill
+    return {
+      fill: `#${fill.toString(16).padStart(6, "0")}`,
+      stroke: `#${stroke.toString(16).padStart(6, "0")}`
+    }
   }
 }
 
@@ -24,13 +29,14 @@ const randomBoxes = ({ xBoxes, zBoxes, oldBoxes = [] }) => {
   const boxes = []
   if (!boxes.length) {
     for (let xi = 0; xi < xBoxes; xi++) {
-      const fill = getColor(oldBoxes, boxes.length)
+      const { fill, stroke } = getColor(oldBoxes, boxes.length)
       for (let zi = 0; zi < zBoxes; zi++) {
         boxes.push({
           x: xi,
           z: zi,
           height: Math.random(),
-          fill
+          fill,
+          stroke
         })
       }
     }
