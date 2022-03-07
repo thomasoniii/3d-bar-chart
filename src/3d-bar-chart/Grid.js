@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import React from "react"
 
 import { h, t } from "../utils/trig"

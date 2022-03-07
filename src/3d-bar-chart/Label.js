@@ -1,8 +1,5 @@
-/* eslint-disable */
-
 import React from "react"
 
-import { usePlaneDataContext } from "./PlaneDataProvider/PlaneDataContext"
 import { useChartDataContext } from "./ChartDataProvider/ChartDataContext"
 
 import "./label.css"
@@ -19,7 +16,7 @@ export const RightLabel = ({
     xBoxes,
     boxSize // { xyh: 10, xzw: 10, ywzh: 10 }
   } = useChartDataContext()
-  const { width, height, rows, cols, transform } = usePlaneDataContext()
+
   const xCoord = boxSize.xzw / 2 + boxSize.xzw * index
   return (
     <g transform={`rotate(-${angle * 2}, ${xCoord}, 0)`}>
@@ -33,7 +30,7 @@ export const RightLabel = ({
         onMouseOut={() => onMouseOut("right", index)}
         onClick={() => onClick("right", index)}
       >
-        {label} {label} {label} {label}
+        {label}
       </text>
       <line
         x1={xBoxes * boxSize.ywzh + 5}
@@ -58,7 +55,7 @@ export const LeftLabel = ({
     yBoxes,
     boxSize // { xyh: 10, xzw: 10, ywzh: 10 }
   } = useChartDataContext()
-  const { width, height, rows, cols, transform } = usePlaneDataContext()
+
   const xCoord = boxSize.xzw / 2 + boxSize.xzw * index
   return (
     <g transform={`rotate(-${angle * 2}, ${xCoord}, 0)`}>
@@ -72,7 +69,7 @@ export const LeftLabel = ({
         onMouseOut={() => onMouseOut("right", index)}
         onClick={() => onClick("left", index)}
       >
-        {label} {label} {label} {label}
+        {label}
       </text>
       <line
         x1={-yBoxes * boxSize.ywzh + xCoord - 5}

@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from "react"
 
 import { h } from "../../utils/trig"
@@ -19,13 +18,6 @@ export const XPlane = ({ offset = 0, children }) => {
 
   const width = xBoxes * boxSize.xzw
   const height = yBoxes * boxSize.xyh
-
-  const horizontal = h(width / 2, angle)
-  const vertical = height / 2
-  const boxWidth = horizontal / xBoxes
-  const boxHeight = vertical / yBoxes
-
-  //const calculatedHeightOffset = (boxSize.ywzh * offset) / 2
 
   const calculatedHeightOffset = (boxSize.ywzh * offset) / 2
   const calculatedWidthOffset =

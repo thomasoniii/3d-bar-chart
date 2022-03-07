@@ -1,190 +1,88 @@
-import React, { useState } from "react"
-
-/* eslint-disable */
+import React from "react"
 
 import Grid from "./Grid"
-import { h, v, t } from "../utils/trig"
 
 import Bar from "./Bar"
 import { ChartDataProvider } from "./ChartDataProvider"
-import { XPlane, YPlane, ZPlane, Plane } from "./Planes"
+import { XPlane, YPlane, ZPlane } from "./Planes"
 import Labels from "./Labels"
 
 const CHART_WIDTH = 250
 const CHART_HEIGHT = 250
 
-const getColor = (boxes, i) => {
-  if (i < boxes.length) {
-    return boxes[i].style
-  } else {
-    const fill = Math.floor(Math.random() * 16777215)
-    const stroke = 16777215 - fill
-    return {
-      fill: `#${fill.toString(16).padStart(6, "0")}`,
-      stroke: `#${stroke.toString(16).padStart(6, "0")}`
-    }
-  }
-}
-
-const randomBoxes = ({ xBoxes, zBoxes, oldBoxes = [] }) => {
-  const boxes = []
-  if (!boxes.length) {
-    for (let xi = 0; xi < xBoxes; xi++) {
-      const style = getColor(oldBoxes, boxes.length)
-      for (let zi = 0; zi < zBoxes; zi++) {
-        boxes.push({
-          x: xi,
-          z: zi,
-          height: Math.random(),
-          style
-        })
-      }
-    }
-  }
-  return boxes
-}
-
-const filterBoxes = ({ boxes, type, i }) => {
-  const newBoxes = []
-  boxes.forEach((box) => {
-    const newBox = { ...box, style: { ...box.style, opacity: 0.15 } }
-    if (
-      (type === "left" && newBox.x === i) ||
-      (type === "right" && newBox.z === i) ||
-      i === undefined
-    ) {
-      newBox.style.opacity = 1
-    }
-    newBoxes.push(newBox)
-  })
-  return newBoxes
-}
-
 const ThreeDBarChart = ({
   xBoxes = 10,
   yBoxes = 10,
   zBoxes = 10,
+  boxes,
+  leftLabels,
+  rightLabels,
   boxSize = {
-    xyh: 12.5, //CHART_HEIGHT / 20,
-    xzw: 12.5, //CHART_WIDTH / 20,
-    ywzh: 12.5 //CHART_WIDTH / 20
-  }
+    xyh: 12.5, // CHART_HEIGHT / 20,
+    xzw: 12.5, // CHART_WIDTH / 20,
+    ywzh: 12.5 // CHART_WIDTH / 20
+  },
+  onLabelClick,
+  onLabelMouseOver,
+  onLabelMouseOut
 }) => {
-  const box = {
-    x: 0,
-    z: 0,
-    height: 0.5,
-    fillX: "red",
-    fillY: "green",
-    fillZ: "blue"
-  }
-
-  const [boxes, setBoxes] = useState([]) //() => randomBoxes({ xBoxes, zBoxes }))
-  //const [boxes, setBoxes] = useState([box])
   const angle = 30
-  const horizontal = h(CHART_WIDTH / 2, angle)
-  const vertical = CHART_HEIGHT / 2
 
-  const xOffset = 0
-  const yOffset = 0
-  const zOffset = 0
-  const SCALER = 0.5
+  const SCALER = 0.8
   return (
-    <>
-      <svg
-        viewBox={`0 0 ${CHART_WIDTH} ${CHART_HEIGHT}`}
-        xmlns="http://www.w3.org/2000/svg"
-        style={{ width: "100%", height: "100%" }}
-        className="3d-bar-chart"
+    <svg
+      viewBox={`0 0 ${CHART_WIDTH} ${CHART_HEIGHT}`}
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ width: "100%", height: "100%" }}
+      className="3d-bar-chart"
+    >
+      <g
+        transform={`scale(${SCALER}) translate(${CHART_WIDTH * (1 - SCALER)}, ${
+          (CHART_HEIGHT * (1 - SCALER)) / 2
+        })  `}
       >
-        <g
-          transform={`scale(${SCALER}) translate(${(CHART_WIDTH * 1) / 2}, ${
-            (CHART_HEIGHT * 1) / 2
-          })  `}
+        <ChartDataProvider
+          data={{
+            chartWidth: CHART_WIDTH,
+            chartHeight: CHART_HEIGHT,
+            xBoxes,
+            yBoxes,
+            zBoxes,
+            boxSize,
+            angle
+          }}
         >
-          <ChartDataProvider
-            data={{
-              chartWidth: CHART_WIDTH,
-              chartHeight: CHART_HEIGHT,
-              xBoxes,
-              yBoxes,
-              zBoxes,
-              boxSize,
-              angle
-            }}
-          >
-            <XPlane>
-              <Grid />
-            </XPlane>
-            <YPlane offset={0.0}>
-              <Grid />
-            </YPlane>
-            <ZPlane>
-              <Grid />
-            </ZPlane>
+          <XPlane>
+            <Grid />
+          </XPlane>
+          <YPlane offset={0.0}>
+            <Grid />
+          </YPlane>
+          <ZPlane>
+            <Grid />
+          </ZPlane>
 
-            {boxes.map((b, i) => (
-              <Bar key={i} box={b} />
-            ))}
+          {boxes.map((b, i) => (
+            <Bar key={i} box={b} />
+          ))}
 
-            {/*<Grid
-            width={CHART_WIDTH / 2}
-            height={CHART_HEIGHT / 2}
-            Xtransform-origin={"center"}
-            Xtransform={`translate(${CHART_WIDTH / 2},0)`}
-            angle={0}
-          /> */}
-            <Labels
-              type="right"
-              labels={[
-                "Able",
-                "Baker",
-                "Charlie",
-                "Delta",
-                "Echo",
-                "Foxtrot",
-                "Gopher",
-                "Hotel",
-                "Icecream",
-                "Jerkoff"
-              ]}
-              onMouseOver={(type, i) =>
-                setBoxes(filterBoxes({ boxes, type, i }))
-              }
-              onMouseOut={() => setBoxes(filterBoxes({ boxes }))}
-              onClick={(type, i) => console.log("CLICK", type, i)}
-            />
-            <Labels
-              type="left"
-              labels={[
-                "able",
-                "baker",
-                "charlie",
-                "delta",
-                "echo",
-                "foxtrot",
-                "gopher",
-                "hotel",
-                "icecream",
-                "jerkoff"
-              ]}
-              onMouseOver={(type, i) =>
-                setBoxes(filterBoxes({ boxes, type, i }))
-              }
-              onMouseOut={() => setBoxes(filterBoxes({ boxes }))}
-              onClick={(type, i) => console.log("CLICK", type, i)}
-            />
-          </ChartDataProvider>
-        </g>
-      </svg>
-      <button
-        onClick={() =>
-          setBoxes(randomBoxes({ xBoxes, zBoxes, oldBoxes: boxes }))
-        }
-      >
-        Random boxes
-      </button>
-    </>
+          <Labels
+            type="right"
+            labels={rightLabels}
+            onMouseOver={onLabelMouseOver}
+            onMouseOut={onLabelMouseOut}
+            onClick={onLabelClick}
+          />
+          <Labels
+            type="left"
+            labels={leftLabels}
+            onMouseOver={onLabelMouseOver}
+            onMouseOut={onLabelMouseOut}
+            onClick={onLabelClick}
+          />
+        </ChartDataProvider>
+      </g>
+    </svg>
   )
 }
 

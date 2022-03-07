@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import React from "react"
 
 import { ZPlane } from "./Planes"
@@ -13,11 +11,7 @@ const Labels = ({
   onMouseOut = () => {},
   onClick = () => {}
 }) => {
-  const {
-    angle,
-    yBoxes,
-    boxSize // { xyh: 10, xzw: 10, ywzh: 10 }
-  } = useChartDataContext()
+  const { angle } = useChartDataContext()
 
   const typeMultiplier = type === "left" ? -1 : 1
   const Label = type === "left" ? LeftLabel : RightLabel

@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from "react"
 
 import { h } from "../../utils/trig"
@@ -11,7 +10,6 @@ export const YPlane = ({ offset = 0, children }) => {
   const {
     chartWidth,
     chartHeight,
-    xBoxes,
     yBoxes,
     zBoxes,
     boxSize, // { xyh: 10, xzw: 10, ywzh: 10 }
@@ -20,11 +18,6 @@ export const YPlane = ({ offset = 0, children }) => {
 
   const width = zBoxes * boxSize.ywzh
   const height = yBoxes * boxSize.xyh
-
-  const horizontal = h(width / 2, angle)
-  const vertical = height / 2
-  const boxWidth = horizontal / zBoxes
-  const boxHeight = vertical / yBoxes
 
   const calculatedHeightOffset = (boxSize.xzw * offset) / 2
   const calculatedWidthOffset =

@@ -1,6 +1,4 @@
-/* eslint-disable */
 import React from "react"
-import { useChartDataContext } from "./ChartDataProvider"
 import { usePlaneDataContext } from "./PlaneDataProvider/PlaneDataContext"
 
 import { h, t } from "../utils/trig"

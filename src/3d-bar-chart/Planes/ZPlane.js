@@ -1,7 +1,4 @@
-/* eslint-disable */
 import React from "react"
-
-import { h } from "../../utils/trig"
 
 import { Plane } from "./Plane"
 import { useChartDataContext } from "../ChartDataProvider"
@@ -12,7 +9,6 @@ export const ZPlane = ({ offset = 0, children }) => {
     chartWidth,
     chartHeight,
     xBoxes,
-    yBoxes,
     zBoxes,
     boxSize, // { xyh: 10, xzw: 10, ywzh: 10 }
     angle
@@ -20,11 +16,6 @@ export const ZPlane = ({ offset = 0, children }) => {
 
   const width = xBoxes * boxSize.xzw
   const height = zBoxes * boxSize.ywzh
-
-  const horizontal = h(width / 2, angle)
-  const vertical = height / 2
-  const boxWidth = horizontal / xBoxes
-  const boxHeight = vertical / zBoxes
 
   const calculatedOffset = boxSize.xyh * offset
 
