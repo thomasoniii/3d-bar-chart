@@ -2,12 +2,12 @@
   "name": "heavy-3d-bar-chart",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://heavyai.github.io/3d-bar-chart/",
+  "homepage": "https://thomasoniii.github.io/3d-bar-chart/",
   "main": "dist/index.js",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/heavyai/3d-bar-chart"
+    "url": "https://github.com/thomasoniii/3d-bar-chart"
   },
   "dependencies": {},
   "scripts": {
