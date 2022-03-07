@@ -4,6 +4,9 @@ import "./App.css"
 
 import ThreeDBarChart from "./3d-bar-chart"
 
+import "./grid.css"
+import "./label.css"
+
 const getColor = (boxes, i) => {
   if (i < boxes.length) {
     return boxes[i].style

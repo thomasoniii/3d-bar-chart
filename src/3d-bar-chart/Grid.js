@@ -2,9 +2,6 @@ import React from "react"
 
 import { h, t } from "../utils/trig"
 import { usePlaneDataContext } from "./PlaneDataProvider/PlaneDataContext"
-
-import "./grid.css"
-
 const Grid = () => {
   const { rows, cols, width, height, angle, transform } = usePlaneDataContext()
   const horizontalLines = []

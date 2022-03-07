@@ -2,8 +2,6 @@ import React from "react"
 
 import { useChartDataContext } from "./ChartDataProvider/ChartDataContext"
 
-import "./label.css"
-
 export const RightLabel = ({
   label,
   index,

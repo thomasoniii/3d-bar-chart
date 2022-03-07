@@ -1,115 +1,107 @@
 module.exports = {
   rules: {
-    // And why they're best practice (alphabetized).
-    "array-callback-return": "error", // omission is usually by mistake.
-    "arrow-parens": "error", // require parens for arrow function arguments regardless of arity
-    "block-scoped-var": "error", // can behave unexpectedly due to variable hoisting.
-    "callback-return": ["error", ["callback", "cb", "next"]], // usually returns control to cb, so best to return out of function as well.
-    "consistent-return": "error", // reduces ambiguity about what gets returned.
-    "consistent-this": ["error", "context"], // enforces a standard var for capturing context (which should be done sparingly).
-    "constructor-super": "error", // catches runtime syntax errors.
-    curly: "error", // reduces ambiguity around blocks and line breaks.
-    "default-case": "error", // not having default (and break) lead to unexpected results.
-    "dot-notation": "error", // easier to read.
-    eqeqeq: "error", // avoids unexpected type coercion.
-    "func-names": "error", // having named functions makes following stack traces much easier.
-    "global-require": "error", // avoid unexpected sync file load.
-    "guard-for-in": "error", // protects against looping over props up prototype chain.
-    "handle-callback-err": ["error", "^.*(e|E)rr"], // often omitted in error.
-    "init-declarations": "error", // not assigning an initialized variable should be explicit, not a mistake.
-    "no-alert": "error", // alerts are annoying.
-    "no-array-constructor": "error", // can do surprising things; better to use [].
-    "no-bitwise": "error", // these are usually typos; can be difficult to reason about.
-    "no-caller": "error", // deprecated.
-    "no-catch-shadow": "error", // causes a bug in IE8.
-    "no-console": "error", // for debugging only; shouldn't be committed.
-    "no-continue": "error", // makes reasoning about loops more difficult.
-    "no-duplicate-imports": "error", // should be consolidated for brevity.
-    "no-eq-null": "error", // use strict equality.
-    "no-eval": "error", // eval is often unsafe and performs poorly.
-    "no-extend-native": "error", // can cause unexpected behavior for other devs.
-    "no-extra-bind": "error", // removes useless code.
-    "no-extra-label": "error", // don't use labels
-    "no-implicit-coercion": "error", // avoids fancy coercion tricks that inhibit readability.
-    "no-implied-eval": "error", // eval is often unsafe and performs poorly.
-    "no-inner-declarations": "error", // avoids unexpected behavior.
-    "no-iterator": "error", // this feature is obsolete and not widely supported.
-    "no-label-var": "error", // a bad feature related to loop control flow, like GOTO.
-    "no-labels": "error", // a bad feature related to loop control flow, like GOTO.
-    "no-lone-blocks": "error", // unless in es6, these are just useless clutter.
-    "no-lonely-if": "error", // extra-verbose and unusual.
-    "no-loop-func": "error", // functions in loops are difficult to reason about.
-    "no-mixed-requires": "error", // group requires and seperate from other init for clearer code.
-    "no-multi-str": "error", // use newline chars or template strings instead.
-    "no-native-reassign": "error", // can cause unexpected behavior for other devs.
-    "no-negated-in-lhs": "error", // reduces ambiguity and typos.
-    "no-new": "error", // using new for side effects is bad because side effects are bad and OO is bad.
-    "no-new-func": "error", // eval is often unsafe and performs poorly.
-    "no-new-object": "error", // use more concise {} instead.
-    "no-new-require": "error", // unusual; just use require.
-    "no-new-wrappers": "error", // does not do what it looks like it does.
-    "no-path-concat": "error", // breaks for non-unix system.
-    "no-process-exit": "error", // too drastic; almost always better to throw and handle.
-    "no-proto": "error", // deprecated.
+    "array-callback-return": "error",
+    "arrow-parens": "error",
+    "block-scoped-var": "error",
+    "callback-return": ["error", ["callback", "cb", "next"]],
+    "consistent-return": "error",
+    "consistent-this": ["error", "context"],
+    "constructor-super": "error",
+    curly: "error",
+    "default-case": "error",
+    "dot-notation": "error",
+    eqeqeq: "error",
+    "func-names": "error",
+    "global-require": "error",
+    "guard-for-in": "error",
+    "handle-callback-err": ["error", "^.*(e|E)rr"],
+    "init-declarations": "error",
+    "no-alert": "error",
+    "no-array-constructor": "error",
+    "no-bitwise": "error",
+    "no-caller": "error",
+    "no-catch-shadow": "error",
+    "no-console": "error",
+    "no-continue": "error",
+    "no-duplicate-imports": "error",
+    "no-eq-null": "error",
+    "no-eval": "error",
+    "no-extend-native": "error",
+    "no-extra-bind": "error",
+    "no-extra-label": "error",
+    "no-implicit-coercion": "error",
+    "no-implied-eval": "error",
+    "no-inner-declarations": "error",
+    "no-iterator": "error",
+    "no-label-var": "error",
+    "no-labels": "error",
+    "no-lone-blocks": "error",
+    "no-lonely-if": "error",
+    "no-loop-func": "error",
+    "no-mixed-requires": "error",
+    "no-multi-str": "error",
+    "no-native-reassign": "error",
+    "no-negated-in-lhs": "error",
+    "no-new": "error",
+    "no-new-func": "error",
+    "no-new-object": "error",
+    "no-new-require": "error",
+    "no-new-wrappers": "error",
+    "no-path-concat": "error",
+    "no-process-exit": "error",
+    "no-proto": "error",
     "no-prototype-builtins": "off",
-    "no-return-assign": ["error", "always"], // can cover up typos.
-    "no-script-url": "error", // eval is often unsafe and performs poorly.
-    "no-self-compare": "error", // usually a typo; better to use isNaN.
-    "no-sequences": "error", // usually a typo; obscures side effects.
-    "no-shadow": "error", // difficult to read, limits access to higher scope vars.
-    "no-sync": "error", // blocks single thread; use async.
-    "no-throw-literal": "error", // be consistent about only throwing Error objects.
-    "no-underscore-dangle": "error", // should not rely on variable name to reason about scoping, as it may change.
-    "no-unmodified-loop-condition": "error", // possible infinite loop; probably a mistake.
-    "no-unneeded-ternary": "error", // improves consistency and readability.
-    "no-unused-expressions": ["error", { allowShortCircuit: true }], // usually a typo; has o effect.
-    "no-use-before-define": ["error", { functions: false }], // avoids temporal dead zone; functions below can improve readability.
-    "no-useless-call": "error", // slower than normal invocation.
-    "no-useless-computed-key": "error", // unnecessary; can cause confusion.
-    "no-useless-concat": "error", // slower than static combination.
-    "no-useless-constructor": "error", // unnecessary.
-    "no-var": "error", // const is best, and let is useful for counters, but they eclipse var's uses. #ES6only
-    "no-void": "error", // unusual and unnecessary.
-    "object-shorthand": "error", // increases consistency. #ES6only
-    "one-var": ["error", "never"], // grouped statement types are more consistent and readable.
-    "prefer-const": "error", // better to be explicit about what is expected to change.
-    "prefer-rest-params": "error", // easier to read than slicing args. #ES6only
-    "prefer-template": "error", // string concatenation is slow and error-prone. #ES6only
+    "no-return-assign": ["error", "always"],
+    "no-script-url": "error",
+    "no-self-compare": "error",
+    "no-sequences": "error",
+    "no-shadow": "error",
+    "no-sync": "error",
+    "no-throw-literal": "error",
+    "no-underscore-dangle": "error",
+    "no-unmodified-loop-condition": "error",
+    "no-unneeded-ternary": "error",
+    "no-unused-expressions": ["error", { allowShortCircuit: true }],
+    "no-use-before-define": ["error", { functions: false }],
+    "no-useless-call": "error",
+    "no-useless-computed-key": "error",
+    "no-useless-concat": "error",
+    "no-useless-constructor": "error",
+    "no-var": "error",
+    "no-void": "error",
+    "object-shorthand": "error",
+    "one-var": ["error", "never"],
+    "prefer-const": "error",
+    "prefer-rest-params": "error",
+    "prefer-template": "error",
     "prettier/prettier": "error",
     quotes: [
       "error",
       "double",
       { avoidEscape: true, allowTemplateLiterals: true }
     ],
-    radix: "error", // should be explicit about what kind of int is being parsed.
-    "react/jsx-boolean-value": "error", // better to be explicit about a boolean value.
-    "react/jsx-pascal-case": "error", // improves consistency and readability.
-    "react/no-danger": "error", // protects against  html injection vulnerabilities.
-    "react/no-did-mount-set-state": "error", // will cause a multiple render calls.
-    "react/no-did-update-set-state": "error", // will cause a multiple render calls.
-    "react/no-multi-comp": ["error", { ignoreStateless: true }], // improves readability.
-    "react/prefer-es6-class": ["warn", "always"], // should use stateless functional components whenever possible.
-    "react/prefer-stateless-function": "error", // should use stateless functional components whenever possible.
-    "react/prop-types": "off", // needs many updates first before enabling
-    "react/react-in-jsx-scope": "error", // catches typos.
-    "react/require-render-return": "error", // catches omission mistakes.
-    "react/self-closing-comp": "error", // improves consistency and readability.
-    "react/sort-comp": "error", // improves consistency, readability.
+    radix: "error",
+    "react/jsx-boolean-value": "error",
+    "react/jsx-pascal-case": "error",
+    "react/no-danger": "error",
+    "react/no-did-mount-set-state": "error",
+    "react/no-did-update-set-state": "error",
+    "react/no-multi-comp": ["error", { ignoreStateless: true }],
+    "react/prefer-es6-class": ["warn", "always"],
+    "react/prefer-stateless-function": "error",
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "error",
+    "react/require-render-return": "error",
+    "react/self-closing-comp": "error",
+    "react/sort-comp": "error",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "error",
-    
-    "spaced-comment": "error", // improves consistency.
-    "vars-on-top": "error", // best to have code agree with hoisting.
-    yoda: "error" // improves readability and consistency.
+
+    "spaced-comment": "error",
+    "vars-on-top": "error",
+    yoda: "error"
   },
-  overrides: [
-    {
-      files: ["*.ts", "*.tsx"],
-      rules: {
-        "react/prop-types": "off" // handled by typescript now
-      }
-    }
-  ],
+
   env: {
     es6: true,
     browser: true,
@@ -117,13 +109,7 @@ module.exports = {
     jasmine: true,
     jest: true
   },
-  plugins: [
-    "babel",
-    "prettier",
-    "react",
-    "react-hooks",
-    "css-modules"
-  ],
+  plugins: ["babel", "prettier", "react", "react-hooks", "css-modules"],
 
   parserOptions: {
     comment: true,
@@ -158,8 +144,6 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
-    //"plugin:@typescript-eslint/eslint-recommended",
-    //"plugin:@typescript-eslint/recommended",
     "prettier",
     "plugin:css-modules/recommended"
   ],
