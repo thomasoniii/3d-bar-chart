@@ -8,6 +8,7 @@ import { h, v, t } from "../utils/trig"
 import Bar from "./Bar"
 import { ChartDataProvider } from "./ChartDataProvider"
 import { XPlane, YPlane, ZPlane, Plane } from "./Planes"
+import Labels from "./Labels"
 
 const CHART_WIDTH = 250
 const CHART_HEIGHT = 250
@@ -62,7 +63,7 @@ const ThreeDBarChart = ({
     fillZ: "blue"
   }
 
-  const [boxes, setBoxes] = useState(() => randomBoxes({ xBoxes, zBoxes }))
+  const [boxes, setBoxes] = useState([]) //() => randomBoxes({ xBoxes, zBoxes }))
   //const [boxes, setBoxes] = useState([box])
   const angle = 30
   const horizontal = h(CHART_WIDTH / 2, angle)
@@ -71,7 +72,7 @@ const ThreeDBarChart = ({
   const xOffset = 0
   const yOffset = 0
   const zOffset = 0
-
+  const SCALER = 0.5
   return (
     <>
       <svg
@@ -80,65 +81,79 @@ const ThreeDBarChart = ({
         style={{ width: "100%", height: "100%" }}
         className="3d-bar-chart"
       >
-        {/* <ChartDataProvider
-        data={{
-          chartWidth: CHART_WIDTH,
-          chartHeight: CHART_HEIGHT,
-          xBoxes,
-          yBoxes,
-          zBoxes,
-          boxSize: { ...boxSize, yzw: 12.5 },
-          angle
-        }}
-      >
-        <XPlane>
-          <Grid />
-        </XPlane>
-      </ChartDataProvider> */}
-        <ChartDataProvider
-          data={{
-            chartWidth: CHART_WIDTH,
-            chartHeight: CHART_HEIGHT,
-            xBoxes,
-            yBoxes,
-            zBoxes,
-            boxSize,
-            angle
-          }}
+        <g
+          transform={`scale(${SCALER}) translate(${(CHART_WIDTH * 1) / 2}, ${
+            (CHART_HEIGHT * 1) / 2
+          })  `}
         >
-          <rect x="0" y="0" width="50" height="50" fill="blue" />
-          <XPlane>
-            <Grid />
-          </XPlane>
-          <YPlane offset={0.0}>
-            <Grid />
-          </YPlane>
-          <ZPlane>
-            <Grid />
-          </ZPlane>
-          {/*<Bar box={box} />
-        <Bar box={box2} />
-        <Bar box={box3} /> */}
-          {boxes.map((b, i) => (
-            <Bar key={i} box={b} />
-          ))}
+          <ChartDataProvider
+            data={{
+              chartWidth: CHART_WIDTH,
+              chartHeight: CHART_HEIGHT,
+              xBoxes,
+              yBoxes,
+              zBoxes,
+              boxSize,
+              angle
+            }}
+          >
+            <XPlane>
+              <Grid />
+            </XPlane>
+            <YPlane offset={0.0}>
+              <Grid />
+            </YPlane>
+            <ZPlane>
+              <Grid />
+            </ZPlane>
 
-          {/* <Grid
-          width={CHART_WIDTH / 2}
-          height={CHART_HEIGHT / 2}
-          Xtransform-origin={"center"}
-          Xtransform={`translate(${CHART_WIDTH / 2},0)`}
-          angle={0}
-        />
-        <Box
-          width={CHART_WIDTH / 2}
-          height={CHART_HEIGHT / 2}
-          angle={0}
-          x={0}
-          y={0}
-          fill={"purple"}
-        /> */}
-        </ChartDataProvider>
+            {boxes.map((b, i) => (
+              <Bar key={i} box={b} />
+            ))}
+
+            {/*<Grid
+            width={CHART_WIDTH / 2}
+            height={CHART_HEIGHT / 2}
+            Xtransform-origin={"center"}
+            Xtransform={`translate(${CHART_WIDTH / 2},0)`}
+            angle={0}
+          /> */}
+            <Labels
+              type="right"
+              labels={[
+                "Able",
+                "Baker",
+                "Charlie",
+                "Delta",
+                "Echo",
+                "Foxtrot",
+                "Gopher",
+                "Hotel",
+                "Icecream",
+                "Jerkoff"
+              ]}
+              onMouseOver={(type, i) => console.log("OVER", type, i)}
+              onClick={(type, i) => console.log("CLICK", type, i)}
+            />
+            <Labels
+              type="left"
+              labels={[
+                "able",
+                "baker",
+                "charlie",
+                "delta",
+                "echo",
+                "foxtrot",
+                "gopher",
+                "hotel",
+                "icecream",
+                "jerkoff"
+              ]}
+              onMouseOver={(type, i) => console.log("OVER", type, i)}
+              onClick={(type, i) => console.log("CLICK", type, i)}
+            />
+          </ChartDataProvider>
+        </g>
       </svg>
       <button
         onClick={() =>
