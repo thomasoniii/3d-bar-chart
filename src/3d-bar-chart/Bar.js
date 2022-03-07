@@ -9,7 +9,7 @@ import Box from "./Box"
 
 const Bar = ({ box }) => {
   const { yBoxes } = useChartDataContext()
-  const d = 200
+  const d = 500
 
   return (
     <Animator values={["measure"]} initial={{ measure: 0 }} duration={d}>
@@ -24,8 +24,10 @@ const Bar = ({ box }) => {
                     x={box.x}
                     y={box.y}
                     measure={m}
-                    fill={box.fillX || box.fill}
-                    stroke={box.stroke}
+                    style={{
+                      ...box.style,
+                      fill: box.style.fillX || box.style.fill
+                    }}
                     flipVertical
                   />
                 </XPlane>
@@ -37,8 +39,10 @@ const Bar = ({ box }) => {
                     x={box.z}
                     y={box.y}
                     measure={m}
-                    fill={box.fill || box.fillY}
-                    stroke={box.stroke}
+                    style={{
+                      ...box.style,
+                      fill: box.style.fillY || box.style.fill
+                    }}
                     flipVertical
                   />
                 </YPlane>
@@ -48,8 +52,10 @@ const Bar = ({ box }) => {
                 <Box
                   x={box.x}
                   y={box.z}
-                  fill={box.fillZ || box.fill}
-                  stroke={box.stroke}
+                  style={{
+                    ...box.style,
+                    fill: box.style.fillZ || box.style.fill
+                  }}
                 />
               </ZPlane>
             </>
