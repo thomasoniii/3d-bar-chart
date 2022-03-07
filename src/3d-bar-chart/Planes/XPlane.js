@@ -19,22 +19,11 @@ export const XPlane = ({ offset = 0, children }) => {
 
   const width = xBoxes * boxSize.xzw
   const height = yBoxes * boxSize.xyh
-  console.log("XP DIM : ", width, height, chartWidth, chartHeight, boxSize)
+
   const horizontal = h(width / 2, angle)
   const vertical = height / 2
   const boxWidth = horizontal / xBoxes
   const boxHeight = vertical / yBoxes
-
-  console.log(
-    "XPT: ",
-    boxSize,
-    boxWidth * offset * 2,
-    boxHeight * offset * 2,
-    chartWidth / 2,
-    width,
-    horizontal
-  )
-  console.log("XP TRANSLATE : ", `translate(0,${chartHeight / 2 - height})`)
 
   //const calculatedHeightOffset = (boxSize.ywzh * offset) / 2
 
@@ -42,7 +31,6 @@ export const XPlane = ({ offset = 0, children }) => {
   const calculatedWidthOffset =
     (h(yBoxes * boxSize.ywzh, angle) / yBoxes) * offset
 
-  console.log("XP CALC : ", boxSize, calculatedHeightOffset)
   return (
     <Plane
       transform={`

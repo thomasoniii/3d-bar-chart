@@ -12,7 +12,7 @@ const Box = ({ x = 0, y = 0, fill = "red", flipVertical = false, measure }) => {
 
   const boxWidth = horizontal / cols
   const boxHeight = height / rows
-  console.log("BW : ", width, height, boxWidth, boxHeight, fill)
+
   const barHeight = measure ? height * measure : boxHeight
 
   const xCoord = x * boxWidth

@@ -10,7 +10,7 @@ import "./grid.css"
 const Grid = () => {
   const { rows, cols, width, height, angle, transform } = usePlaneDataContext()
   const horizontalLines = []
-  console.log("GW:: ", width, height)
+
   const horizontal = h(width, angle)
   const vertical = t(horizontal, angle)
 

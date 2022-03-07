@@ -25,10 +25,9 @@ export const ZPlane = ({ offset = 0, children }) => {
   const vertical = height / 2
   const boxWidth = horizontal / xBoxes
   const boxHeight = vertical / zBoxes
-  console.log("ZWH : ", width, height, boxWidth, boxHeight, offset)
 
   const calculatedOffset = boxSize.xyh * offset
-  console.log("ZWH CALC : ", yBoxes, boxSize.xyh, calculatedOffset, offset)
+
   return (
     <Plane
       transform={`
