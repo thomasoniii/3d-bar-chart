@@ -52,7 +52,7 @@ export const LeftLabel = ({
 }) => {
   const {
     angle,
-    yBoxes,
+    zBoxes,
     boxSize // { xyh: 10, xzw: 10, ywzh: 10 }
   } = useChartDataContext()
 
@@ -60,7 +60,7 @@ export const LeftLabel = ({
   return (
     <g transform={`rotate(-${angle * 2}, ${xCoord}, 0)`}>
       <text
-        x={-yBoxes * boxSize.ywzh + xCoord - 5}
+        x={-zBoxes * boxSize.ywzh + xCoord - 5}
         y={0}
         className="left-label label"
         textAnchor="end"
@@ -72,9 +72,9 @@ export const LeftLabel = ({
         {label}
       </text>
       <line
-        x1={-yBoxes * boxSize.ywzh + xCoord - 5}
+        x1={-zBoxes * boxSize.ywzh + xCoord - 5}
         y1={0}
-        x2={-yBoxes * boxSize.ywzh + xCoord}
+        x2={-zBoxes * boxSize.ywzh + xCoord}
         y2={0}
         stroke="black"
       />

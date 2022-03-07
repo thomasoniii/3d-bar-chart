@@ -91,8 +91,8 @@ function App() {
           yBoxes={yBoxes}
           zBoxes={zBoxes}
           boxes={boxes}
-          leftLabels={leftLabels}
-          rightLabels={rightLabels}
+          leftLabels={leftLabels.slice(0, xBoxes)}
+          rightLabels={rightLabels.slice(0, zBoxes)}
           onLabelMouseOver={(type, i) =>
             setBoxes(filterBoxes({ boxes, type, i }))
           }
