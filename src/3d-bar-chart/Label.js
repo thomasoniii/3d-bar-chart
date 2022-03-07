@@ -7,7 +7,13 @@ import { useChartDataContext } from "./ChartDataProvider/ChartDataContext"
 
 import "./label.css"
 
-export const RightLabel = ({ label, index, onMouseOver, onClick }) => {
+export const RightLabel = ({
+  label,
+  index,
+  onMouseOver,
+  onMouseOut,
+  onClick
+}) => {
   const {
     angle,
     xBoxes,
@@ -24,6 +30,7 @@ export const RightLabel = ({ label, index, onMouseOver, onClick }) => {
         textAnchor="start"
         alignmentBaseline="middle"
         onMouseOver={() => onMouseOver("right", index)}
+        onMouseOut={() => onMouseOut("right", index)}
         onClick={() => onClick("right", index)}
       >
         {label} {label} {label} {label}
@@ -39,7 +46,13 @@ export const RightLabel = ({ label, index, onMouseOver, onClick }) => {
   )
 }
 
-export const LeftLabel = ({ label, index, onMouseOver, onClick }) => {
+export const LeftLabel = ({
+  label,
+  index,
+  onMouseOver,
+  onMouseOut,
+  onClick
+}) => {
   const {
     angle,
     yBoxes,
@@ -56,6 +69,7 @@ export const LeftLabel = ({ label, index, onMouseOver, onClick }) => {
         textAnchor="end"
         alignmentBaseline="middle"
         onMouseOver={() => onMouseOver("left", index)}
+        onMouseOut={() => onMouseOut("right", index)}
         onClick={() => onClick("left", index)}
       >
         {label} {label} {label} {label}

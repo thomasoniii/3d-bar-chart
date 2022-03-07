@@ -44,6 +44,22 @@ const randomBoxes = ({ xBoxes, zBoxes, oldBoxes = [] }) => {
   return boxes
 }
 
+const filterBoxes = ({ boxes, type, i }) => {
+  const newBoxes = []
+  boxes.forEach((box) => {
+    const newBox = { ...box, style: { ...box.style, opacity: 0.15 } }
+    if (
+      (type === "left" && newBox.x === i) ||
+      (type === "right" && newBox.z === i) ||
+      i === undefined
+    ) {
+      newBox.style.opacity = 1
+    }
+    newBoxes.push(newBox)
+  })
+  return newBoxes
+}
+
 const ThreeDBarChart = ({
   xBoxes = 10,
   yBoxes = 10,
@@ -132,7 +148,10 @@ const ThreeDBarChart = ({
                 "Icecream",
                 "Jerkoff"
               ]}
-              onMouseOver={(type, i) => console.log("OVER", type, i)}
+              onMouseOver={(type, i) =>
+                setBoxes(filterBoxes({ boxes, type, i }))
+              }
+              onMouseOut={() => setBoxes(filterBoxes({ boxes }))}
               onClick={(type, i) => console.log("CLICK", type, i)}
             />
             <Labels
@@ -149,7 +168,10 @@ const ThreeDBarChart = ({
                 "icecream",
                 "jerkoff"
               ]}
-              onMouseOver={(type, i) => console.log("OVER", type, i)}
+              onMouseOver={(type, i) =>
+                setBoxes(filterBoxes({ boxes, type, i }))
+              }
+              onMouseOut={() => setBoxes(filterBoxes({ boxes }))}
               onClick={(type, i) => console.log("CLICK", type, i)}
             />
           </ChartDataProvider>
