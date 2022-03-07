@@ -59,29 +59,29 @@ const yBoxes = 10
 const zBoxes = 10
 
 const leftLabels = [
-  "able",
-  "baker",
-  "charlie",
-  "delta",
-  "echo",
-  "foxtrot",
-  "gopher",
-  "hotel",
-  "icecream",
-  "jerkoff"
+  "Test #1",
+  "Test #2",
+  "Test #3",
+  "Test #4",
+  "Test #5",
+  "Test #6",
+  "Test #7",
+  "Test #8",
+  "Test #9",
+  "Test #10"
 ]
 
 const rightLabels = [
-  "Able",
-  "Baker",
-  "Charlie",
-  "Delta",
-  "Echo",
-  "Foxtrot",
-  "Gopher",
-  "Hotel",
-  "Icecream",
-  "Jerkoff"
+  "Mrs. Alfa's Class",
+  "Mrs. Bravo's Class",
+  "Mrs. Charlie's Class",
+  "Mrs. Delta's Class",
+  "Mrs. Echo's Class",
+  "Mrs. Foxtrot's Class",
+  "Mrs. Golf's Class",
+  "Mrs. Hotel's Class",
+  "Mrs. India's Class",
+  "Mrs. Juliett's Class"
 ]
 
 function App() {
