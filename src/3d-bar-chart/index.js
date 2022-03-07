@@ -12,11 +12,19 @@ import { XPlane, YPlane, ZPlane, Plane } from "./Planes"
 const CHART_WIDTH = 250
 const CHART_HEIGHT = 250
 
-const randomBoxes = ({ xBoxes, zBoxes }) => {
+const getColor = (boxes, i) => {
+  if (i < boxes.length) {
+    return boxes[i].fill
+  } else {
+    return `#${Math.floor(Math.random() * 16777215).toString(16)}`
+  }
+}
+
+const randomBoxes = ({ xBoxes, zBoxes, oldBoxes = [] }) => {
   const boxes = []
   if (!boxes.length) {
     for (let xi = 0; xi < xBoxes; xi++) {
-      const fill = `#${Math.floor(Math.random() * 16777215).toString(16)}`
+      const fill = getColor(oldBoxes, boxes.length)
       for (let zi = 0; zi < zBoxes; zi++) {
         boxes.push({
           x: xi,
@@ -48,7 +56,8 @@ const ThreeDBarChart = ({
     fillY: "green",
     fillZ: "blue"
   }
-  const [boxes, setBoxes] = useState(randomBoxes({ xBoxes, zBoxes }))
+
+  const [boxes, setBoxes] = useState(() => randomBoxes({ xBoxes, zBoxes }))
   //const [boxes, setBoxes] = useState([box])
   const angle = 30
   const horizontal = h(CHART_WIDTH / 2, angle)
@@ -126,7 +135,11 @@ const ThreeDBarChart = ({
         /> */}
         </ChartDataProvider>
       </svg>
-      <button onClick={() => setBoxes(randomBoxes({ xBoxes, zBoxes }))}>
+      <button
+        onClick={() =>
+          setBoxes(randomBoxes({ xBoxes, zBoxes, oldBoxes: boxes }))
+        }
+      >
         Random boxes
       </button>
     </>
