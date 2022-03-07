@@ -37,9 +37,9 @@ const ThreeDBarChart = ({
       className="3d-bar-chart"
     >
       <g
-        transform={`scale(${SCALER}) translate(${CHART_WIDTH * (1 - SCALER)}, ${
-          (CHART_HEIGHT * (1 - SCALER)) / 2
-        })  `}
+        transform={`scale(${SCALER}) translate(${
+          CHART_WIDTH * (1 - SCALER) - 25
+        }, ${(CHART_HEIGHT * (1 - SCALER)) / 2 - 25})  `}
       >
         <ChartDataProvider
           data={{

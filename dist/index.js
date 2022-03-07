@@ -958,7 +958,7 @@ var ThreeDBarChart = function ThreeDBarChart(_ref) {
     },
     className: "3d-bar-chart"
   }, /*#__PURE__*/React__default$1["default"].createElement("g", {
-    transform: "scale(".concat(SCALER, ") translate(").concat(CHART_WIDTH * (1 - SCALER), ", ").concat(CHART_HEIGHT * (1 - SCALER) / 2, ")  ")
+    transform: "scale(".concat(SCALER, ") translate(").concat(CHART_WIDTH * (1 - SCALER) - 25, ", ").concat(CHART_HEIGHT * (1 - SCALER) / 2 - 25, ")  ")
   }, /*#__PURE__*/React__default$1["default"].createElement(ChartDataProvider, {
     data: {
       chartWidth: CHART_WIDTH,
