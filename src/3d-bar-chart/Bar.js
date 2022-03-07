@@ -24,10 +24,7 @@ const Bar = ({ box }) => {
                     x={box.x}
                     y={box.y}
                     measure={m}
-                    style={{
-                      ...box.style,
-                      fill: box.style.fillX || box.style.fill
-                    }}
+                    style={box.styleX || box.style}
                     flipVertical
                   />
                 </XPlane>
@@ -39,24 +36,14 @@ const Bar = ({ box }) => {
                     x={box.z}
                     y={box.y}
                     measure={m}
-                    style={{
-                      ...box.style,
-                      fill: box.style.fillY || box.style.fill
-                    }}
+                    style={box.styleY || box.style}
                     flipVertical
                   />
                 </YPlane>
               )}
 
               <ZPlane offset={m * yBoxes}>
-                <Box
-                  x={box.x}
-                  y={box.z}
-                  style={{
-                    ...box.style,
-                    fill: box.style.fillZ || box.style.fill
-                  }}
-                />
+                <Box x={box.x} y={box.z} style={box.styleZ || box.style} />
               </ZPlane>
             </>
           )

@@ -14,7 +14,7 @@ const CHART_HEIGHT = 250
 
 const getColor = (boxes, i) => {
   if (i < boxes.length) {
-    return boxes[i].style
+    return boxes[i].styleX
   } else {
     const fill = Math.floor(Math.random() * 16777215)
     const stroke = 16777215 - fill
